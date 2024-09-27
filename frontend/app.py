@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # FastAPI server URL
-API_URL = "http://127.0.0.1:8000"  # Make sure this matches the FastAPI server
+API_URL = "http://backend:10000"  # Make sure this matches the FastAPI server
 
 # Streamlit UI components
 st.title("Document QA System")
