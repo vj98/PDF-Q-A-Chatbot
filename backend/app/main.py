@@ -39,6 +39,17 @@ tokenizer = AutoTokenizer.from_pretrained(checkpoint)
 base_model = AutoModelForSeq2SeqLM.from_pretrained(checkpoint, device_map=device, torch_dtype=torch.float32)
 persist_directory = "db"
 
+# Model for feedback
+class Feedback(BaseModel):
+    accuracy: int
+    satisfaction: int
+
+@app.post("/feedback")
+async def receive_feedback(feedback: Feedback):
+    # Here you could log the feedback or process it further
+    print(f"Received feedback: Accuracy - {feedback.accuracy}, Satisfaction - {feedback.satisfaction}")
+    return {"message": "Feedback received successfully"}
+
 def data_ingestion():
     logger.info("Starting data ingestion...")
     for root, dirs, files in os.walk("docs"):
